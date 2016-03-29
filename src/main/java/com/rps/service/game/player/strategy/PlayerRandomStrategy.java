@@ -1,23 +1,22 @@
 package com.rps.service.game.player.strategy;
 
+import com.rps.service.game.rules.GameConstants;
 
-import com.rps.service.game.player.PlayerAction;
-import com.rps.service.game.rules.RPSConstants;
-
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class PlayerRandomStrategy implements PlayerAction {
 
-    private Random random = new Random();
+    //thx findbugs
+    private SecureRandom random = new SecureRandom();
 
     @Override
-    public RPSConstants getTurn() {
+    public GameConstants getTurn() {
         double randomDouble = random.nextDouble();
         if (randomDouble <= 0.33) {
-            return  RPSConstants.ROCK;
+            return GameConstants.ROCK;
         } else if (randomDouble <= 0.66) {
-            return RPSConstants.PAPER;
+            return GameConstants.PAPER;
         }
-        return  RPSConstants.SCISSORS;
+        return GameConstants.SCISSORS;
     }
 }

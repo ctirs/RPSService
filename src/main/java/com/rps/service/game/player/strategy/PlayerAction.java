@@ -1,10 +1,10 @@
 package com.rps.service.game.player.strategy;
 
-import com.rps.service.game.rules.RPSConstants;
+import com.rps.service.game.rules.GameConstants;
 
 public interface PlayerAction {
 
-    default RPSConstants getTurn() {
-        return RPSConstants.ROCK;
+    default GameConstants getTurn() {
+        return GameConstants.ROCK;
     }
 }

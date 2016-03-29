@@ -1,18 +1,17 @@
 package com.rps.service.game.player.strategy;
 
-import com.rps.service.game.player.PlayerAction;
-import com.rps.service.game.rules.RPSConstants;
+import com.rps.service.game.rules.GameConstants;
 
 public class PlayerFixedStrategy implements PlayerAction {
 
-    private RPSConstants fixedResult;
+    private GameConstants fixedResult;
 
-    public PlayerFixedStrategy(RPSConstants fixed) {
+    public PlayerFixedStrategy(GameConstants fixed) {
         this.fixedResult = fixed;
     }
 
     @Override
-    public RPSConstants getTurn() {
+    public GameConstants getTurn() {
         return fixedResult;
     }
 }

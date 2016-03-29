@@ -1,22 +1,23 @@
 package com.rps.service.api;
 
-import com.rps.service.game.rules.RPSConstants;
-import com.rps.service.game.RPSGame;
-import com.rps.service.game.RPSResult;
+import com.rps.service.game.Game;
+import com.rps.service.game.GameResult;
 import com.rps.service.game.player.Player;
-import com.rps.service.game.player.strategy.RPSFixedStrategy;
-import com.rps.service.game.player.strategy.RPSRandomStrategy;
+import com.rps.service.game.player.strategy.PlayerFixedStrategy;
+import com.rps.service.game.player.strategy.PlayerRandomStrategy;
+import com.rps.service.game.rules.GameConstants;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GameAPI {
 
-    @RequestMapping("/game")
-    public RPSResult caculateGameResult(@RequestParam(value = "rounds", required = false, defaultValue = "100") int rounds) {
-        RPSGame game = new RPSGame(new Player(new RPSFixedStrategy(RPSConstants.ROCK)),
-                new Player(new RPSRandomStrategy()), rounds);
+    @RequestMapping(value = "/game", method = RequestMethod.POST)
+    public GameResult caculateGameResult(@RequestParam(value = "rounds", required = false, defaultValue = "100") int rounds) {
+        Game game = new Game(new Player(new PlayerFixedStrategy(GameConstants.ROCK)),
+                new Player(new PlayerRandomStrategy()), rounds);
         return game.play();
 
 

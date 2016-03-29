@@ -6,7 +6,8 @@ public class GameResult {
     private int winB;
     private int draws;
 
-    public GameResult() {}
+    public GameResult() {
+    }
 
     public int getWinA() {
         return winA;

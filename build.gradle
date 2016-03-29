@@ -11,10 +11,23 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: "jacoco"
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+
 
 jar {
     baseName = rootProject.name
-    version =  '0.0.1'
+    version = '0.0.1'
+}
+
+sourceSets {
+
+    test {
+        java {
+            srcDirs = ["src/test/java"]
+        }
+    }
 }
 
 repositories {
@@ -31,6 +44,60 @@ dependencies {
     compile("io.springfox:springfox-swagger-ui:2.0.2")
     testCompile("junit:junit")
     testCompile("org.mockito:mockito-all:1.9.5")
+}
+
+test {
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+
+    // listen to events in the test execution lifecycle
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: " + descriptor)
+    }
+
+    // listen to standard out and standard error of the test JVM(s)
+    onOutput { descriptor, event ->
+        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message)
+    }
+}
+
+
+dependencies {
+    findbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.4.5'
+}
+
+findbugs {
+    ignoreFailures = true
+    toolVersion = "3.0.1"
+    sourceSets = [sourceSets.main]
+    reportsDir = file("$project.buildDir/reports/findbugs")
+    effort = "max"
+    excludeFilter = file("$rootDir/config/findbugs/excludeFilter.xml")
+}
+
+jacoco {
+    toolVersion = "0.7.1.201405082137"
+    reportsDir = file("$project.buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco"
+    }
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+checkstyle {
+    toolVersion = "6.16.1"
+    configFile = 'config/checkstyle/checkstyle.xml' as File
 }
 
 task wrapper(type: Wrapper) {
