@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+    <suppress checks="JavadocVariable"
+              files="(integration-)?test/.*.java"
+            />
+
+    <suppress checks="JavadocStyleCheck"
+              files="(integration-)?test/.*.java"
+            />
+
+    <suppress checks="JavadocMethod"
+              files="(integration-)?test/.*.java"
+            />
+    <suppress checks="JavadocType"
+              files="(integration-)?test/.*.java"
+            />
+    <suppress checks="MethodLength"
+              files="(integration-)?test/.*.java"
+            />
+
+    <suppress checks="Regexp" id="declareAllAsSolved"
+              files="(integration-)?test/.*.java"
+            />
+
+    <!-- Suppress all import control warnings in tests -->
+    <suppress checks="ImportControl"
+              files="(integration-)?test/.*.java"
+            />
+
+    <suppress checks="AvoidStarImport"
+              files="(integration-)?test/.*.java"
+            />
+
+    <suppress checks="MethodName"
+              files="(integration-)?test/.*.java"
+            />
+
+    <suppress checks="VisibilityModifierCheck"
+              files="integration-test/.*.java"
+    />
+
+    <!-- Suppress all warnings in generated sources -->
+    <suppress checks="."
+              files="[\\/]generated-src[\\/]"
+            />
+</suppressions>
