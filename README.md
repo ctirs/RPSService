@@ -20,7 +20,7 @@ Approach: ideally "test-driven"
 
 ## Template Project
 
-[http://www.hascode.com/2015/07/integrating-swagger-into-a-spring-boot-restful-webservice-with-springfox/]
+[Template](http://www.hascode.com/2015/07/integrating-swagger-into-a-spring-boot-restful-webservice-with-springfox/)
 
 ## Instructions 
 
@@ -31,7 +31,7 @@ Simply run the following command with Gradle:
 ```
 
 to start the application
-at [http://localhost:8080/swagger-ui.html] you will find the api documantation
+at [Swagger](http://localhost:8080/swagger-ui.html) you will find the api documantation
 
 
 ## CI
